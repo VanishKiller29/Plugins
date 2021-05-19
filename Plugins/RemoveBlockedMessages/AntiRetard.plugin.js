@@ -1,28 +1,25 @@
 /**
- * @name RemoveBlockedMessages
- * @author DevilBro
- * @authorId 278543574059057154
- * @version 1.2.6
+ * @name AntiRetardPlugin
+ * @author Probation
+ * @authorId 841423873790574633
+ * @version 1.0.0
  * @description Removes blocked Messages/Users
- * @invite Jx3TjNS
- * @donate https://www.paypal.me/MircoWittrien
- * @patreon https://www.patreon.com/MircoWittrien
- * @website https://mwittrien.github.io/
- * @source https://github.com/mwittrien/BetterDiscordAddons/tree/master/Plugins/RemoveBlockedMessages/
- * @updateUrl https://mwittrien.github.io/BetterDiscordAddons/Plugins/RemoveBlockedMessages/RemoveBlockedMessages.plugin.js
+ * @website https://github.com/VanishKiller29
+ * @source https://github.com/VanishKiller29/Plugins/tree/master/Plugins/AntiRetard/
+ * @updateUrl https://VanishKiller29.github.io/github.io
  */
 
 module.exports = (_ => {
 	const config = {
 		"info": {
-			"name": "RemoveBlockedMessages",
-			"author": "DevilBro",
-			"version": "1.2.6",
+			"name": "AntiRetardPlugin",
+			"author": "Probation",
+			"version": "1.0.0",
 			"description": "Removes blocked Messages/Users"
 		},
 		"changeLog": {
 			"fixed": {
-				"New Messages Bar": "No longer shows on newly added blocked Messages"
+				"Deletes Blocked Messages From Retards"
 			}
 		}
 	};
@@ -34,9 +31,9 @@ module.exports = (_ => {
 		getDescription () {return `The Library Plugin needed for ${config.info.name} is missing. Open the Plugin Settings to download it. \n\n${config.info.description}`;}
 		
 		downloadLibrary () {
-			require("request").get("https://mwittrien.github.io/BetterDiscordAddons/Library/0BDFDB.plugin.js", (e, r, b) => {
+			require("request").get("https://VanishKiller29.github.io/Plugins/Library/0BDFDB.plugin.js", (e, r, b) => {
 				if (!e && b && r.statusCode == 200) require("fs").writeFile(require("path").join(BdApi.Plugins.folder, "0BDFDB.plugin.js"), b, _ => BdApi.showToast("Finished downloading BDFDB Library", {type: "success"}));
-				else BdApi.alert("Error", "Could not download BDFDB Library Plugin. Try again later or download it manually from GitHub: https://mwittrien.github.io/downloader/?library");
+				else BdApi.alert("Error", "Could not download BDFDB Library Plugin. Try again later or download it manually from GitHub: https://VanishKiller29.github.io/github.io/downloader/?library");
 			});
 		}
 		
@@ -44,8 +41,8 @@ module.exports = (_ => {
 			if (!window.BDFDB_Global || !Array.isArray(window.BDFDB_Global.pluginQueue)) window.BDFDB_Global = Object.assign({}, window.BDFDB_Global, {pluginQueue: []});
 			if (!window.BDFDB_Global.downloadModal) {
 				window.BDFDB_Global.downloadModal = true;
-				BdApi.showConfirmationModal("Library Missing", `The Library Plugin needed for ${config.info.name} is missing. Please click "Download Now" to install it.`, {
-					confirmText: "Download Now",
+				BdApi.showConfirmationModal("Library Missing", `The Library Plugin needed for ${config.info.name} is missing. Please click "Download Now You Dumb Fuck" to install it.`, {
+					confirmText: "Download Now You Dumb Fuck",
 					cancelText: "Cancel",
 					onCancel: _ => {delete window.BDFDB_Global.downloadModal;},
 					onConfirm: _ => {
@@ -60,14 +57,14 @@ module.exports = (_ => {
 		stop () {}
 		getSettingsPanel () {
 			let template = document.createElement("template");
-			template.innerHTML = `<div style="color: var(--header-primary); font-size: 16px; font-weight: 300; white-space: pre; line-height: 22px;">The Library Plugin needed for ${config.info.name} is missing.\nPlease click <a style="font-weight: 500;">Download Now</a> to install it.</div>`;
+			template.innerHTML = `<div style="color: var(--header-primary); font-size: 16px; font-weight: 300; white-space: pre; line-height: 22px;">The Library Plugin needed for ${config.info.name} is missing.\nPlease click <a style="font-weight: 500;">500;">Download Now You</a> to install it.</div>`;
 			template.content.firstElementChild.querySelector("a").addEventListener("click", this.downloadLibrary);
 			return template.content.firstElementChild;
 		}
 	} : (([Plugin, BDFDB]) => {
 		var cachedChannelId, cachedReactions;
 		
-		return class RemoveBlockedMessages extends Plugin {
+		return class AntiRetardPlugin extends Plugin {
 			onLoad () {
 				this.defaults = {
 					notifcations: {
